@@ -1,0 +1,29 @@
+package com.actividades.chatofflinep;
+
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+import javafx.scene.image.Image;
+
+import java.io.File;
+import java.io.IOException;
+
+public class ChatOfflineAplication extends Application{
+
+    public void start(Stage stage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(ChatOfflineAplication.class.getResource("pantallaInicioSesion.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Respawnix");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
+
+    public static void main(String[] args) {
+    launch();
+
+    }
+}

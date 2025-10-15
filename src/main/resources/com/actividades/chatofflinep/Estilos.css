@@ -1,0 +1,107 @@
+.button {
+    -fx-pref-width: 200px;
+    -fx-pref-height: 50px;
+    -fx-background-color: transparent;
+    -fx-border-color: #252525;
+    -fx-border-radius: 30;
+    -fx-text-fill: #333;
+    -fx-font-weight: 800;
+    -fx-font-size: 16px;
+    -fx-cursor: hand;
+}
+
+btn-bg {
+    -fx-fill: #333;
+    -fx-arc-width: 30;
+    -fx-arc-height: 30;
+    -fx-opacity: 0;
+    -fx-scale-x: 0.05;
+    -fx-scale-y: 0.05;
+}
+
+
+.simple-textfield {
+    -fx-background-color: #fff;       /* Fondo blanco */
+    -fx-border-color: #ccc;           /* Borde gris claro */
+    -fx-border-radius: 6;             /* Bordes redondeados */
+    -fx-padding: 8 12 8 12;           /* Espaciado interno */
+    -fx-font-size: 14px;              /* Tamaño de letra */
+    -fx-text-fill: #333;              /* Color del texto */
+    -fx-prompt-text-fill: #aaa;       /* Color del placeholder */
+    -fx-focus-color: #6200ea;         /* Color del borde al enfocar */
+    -fx-faint-focus-color: transparent;
+}
+
+/* Efecto cuando se enfoca */
+.simple-textfield:focused {
+    -fx-border-color: #6200ea;        /* Borde morado al enfocar */
+    -fx-background-color: #f9f9ff;    /* Fondo ligeramente diferente */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 4, 0, 0, 2);
+}
+
+
+.titulo {
+  -fx-font-size: 20px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #333333;
+}
+
+.custom-listview {
+  -fx-background-color: white;
+  -fx-background-radius: 12;
+  -fx-border-radius: 12;
+  -fx-padding: 0;
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 4);
+}
+
+.custom-listview .list-cell {
+  -fx-background-color: transparent;
+  -fx-padding: 12 16;
+  -fx-border-color: #eee;
+  -fx-border-width: 0 0 1 0;
+  -fx-border-style: solid;
+  -fx-font-size: 10px;
+  -fx-transition: all 0.3s ease;
+  -fx-text-fill: black;
+}
+.custom-listview .list-cell:hover {
+  -fx-background-color: #f0f4ff;
+}
+
+.custom-listview .list-cell:selected {
+  -fx-background-color: #e0e7ff;
+  -fx-text-fill: #1d4ed8;
+  -fx-font-weight: bold;
+}
+
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-padding: 8 12 8 12;
+    -fx-cursor: hand;
+    -fx-min-width: 30px;
+    -fx-min-height: 30px;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+
+.menu-button:focused,
+.menu-button:armed,
+.menu-button:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.08);
+    -fx-background-radius: 50%;
+}
+
+
+.menu-button .arrow-button,
+.menu-button .arrow {
+    -fx-opacity: 0;
+    -fx-padding: 0;
+    -fx-shape: null;
+}
+
+
+.menu-button .menu-item {
+    -fx-font-size: 14px;
+    -fx-padding: 4 10 4 10;
+}
