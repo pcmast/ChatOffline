@@ -49,12 +49,11 @@
 
 <VBox prefHeight="761.0" prefWidth="1428.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.actividades.chatofflinep.controller.pantallaInicialController">
   <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" />
-    <SplitPane dividerPositions="0.5" focusTraversable="true" prefHeight="635.0" prefWidth="1442.0" VBox.vgrow="ALWAYS">
+    <SplitPane fx:id="splitPaneQuieto" dividerPositions="0.46985417835109367" focusTraversable="true" prefHeight="635.0" prefWidth="1442.0" VBox.vgrow="NEVER">
       <items>
-        <ScrollPane prefHeight="722.0" prefWidth="504.0">
+        <ScrollPane prefHeight="722.0" prefWidth="633.0">
           <content>
-            <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="699.0" prefWidth="422.0">
+            <AnchorPane id="Content" minHeight="-1.0" minWidth="650.0" prefHeight="716.0" prefWidth="666.0">
               <children>
                 <Label alignment="CENTER" layoutX="6.0" layoutY="78.0" style="&#10;" text="Chats" textAlignment="CENTER" wrapText="false">
                            <font>
@@ -64,17 +63,18 @@
                               <Color red="0.624" green="0.624" blue="0.624" fx:id="x6" />
                            </textFill>
                         </Label>
-                        <ListView fx:id="listChats" layoutX="12.0" layoutY="120.0" prefHeight="596.0" prefWidth="632.0" styleClass="custom-listview" stylesheets="@Estilos.css" />
+                        <ListView fx:id="listChats" layoutX="12.0" layoutY="120.0" prefHeight="596.0" prefWidth="620.0" styleClass="custom-listview" stylesheets="@Estilos.css" />
                         <ImageView fx:id="imagenAjustes" fitHeight="35.0" fitWidth="38.0" layoutX="19.0" layoutY="663.0" pickOnBounds="true" preserveRatio="true" />
                         <Label layoutX="16.0" layoutY="20.0" text="UniChat">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Label>
-                        <MenuButton fx:id="tresPuntos" layoutX="37.0" layoutY="63.0" mnemonicParsing="false" stylesheets="@Estilos.css" text="⋮">
+                        <MenuButton fx:id="tresPuntos" layoutX="37.0" layoutY="63.0" mnemonicParsing="false" onMouseClicked="#menu" stylesheets="@Estilos.css" text="⋮">
                           <items>
-                            <MenuItem mnemonicParsing="false" text="Crear Chat" />
-                            <MenuItem mnemonicParsing="false" text="Cerrar Sesión" />
+                            <MenuItem mnemonicParsing="false" onAction="#crearChat" text="Crear Chat" />
+                              <MenuItem mnemonicParsing="false" onAction="#contactos" text="Contactos" />
+                            <MenuItem mnemonicParsing="false" onAction="#cerrarSesion" text="Cerrar Sesión" />
                           </items>
                            <font>
                               <Font size="16.0" />
@@ -84,9 +84,9 @@
             </AnchorPane>
           </content>
         </ScrollPane>
-        <AnchorPane prefHeight="722.0" prefWidth="864.0">
+        <AnchorPane minWidth="258.0" prefHeight="732.0" prefWidth="791.0">
                <children>
-                  <ListView layoutX="14.0" layoutY="23.0" prefHeight="698.0" prefWidth="749.0" />
+                  <ListView layoutX="35.0" layoutY="33.0" prefHeight="698.0" prefWidth="683.0" />
                </children>
         </AnchorPane>
       </items>

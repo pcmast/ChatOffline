@@ -1,8 +1,7 @@
 package com.actividades.chatofflinep.controller;
 
 import com.actividades.chatofflinep.ChatOfflineAplication;
-import com.actividades.chatofflinep.dataAccess.XMLManager;
-import com.actividades.chatofflinep.dataAccess.XMLManagerUsuariosCollection;
+import com.actividades.chatofflinep.dataAccess.XMLManagerCollection;
 import com.actividades.chatofflinep.model.TodosUsuarios;
 import com.actividades.chatofflinep.model.Usuario;
 import com.actividades.chatofflinep.utils.Utilidades;
@@ -10,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -52,13 +52,13 @@ public class pantallaRegistroController {
                 usuariosRegistrados = usuarios.getUsuarioList();
                 usuariosRegistrados.add(usuario);
             }else {
-                XMLManagerUsuariosCollection.writeXML(usuarios, "xml/usuarios");
+                XMLManagerCollection.writeXML(usuarios, "xml/usuarios");
                 usuariosRegistrados = usuarios.getUsuarioList();
                 usuariosRegistrados.add(usuario);
 
             }
 
-            XMLManagerUsuariosCollection.writeXML(usuarios, "xml/usuarios");
+            XMLManagerCollection.writeXML(usuarios, "xml/usuarios");
             registroSesionExitoso(mouseEvent);
         }
 
@@ -72,7 +72,7 @@ public class pantallaRegistroController {
             Stage currentStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
             Scene scene = null;
             scene = new Scene(fxmlLoader.load());
-            currentStage.setTitle("Respawnix");
+            currentStage.setTitle("ChatOffline");
             currentStage.setScene(scene);
             currentStage.show();
         } catch (IOException e) {
@@ -85,10 +85,10 @@ public class pantallaRegistroController {
     public void registroSesionExitoso(MouseEvent mouseEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(ChatOfflineAplication.class.getResource("pantallaInicioSesion.fxml"));
-            Stage currentStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+            Stage currentStage = (Stage) ((MenuItem) mouseEvent.getSource()).getParentPopup().getOwnerWindow();
             Scene scene = null;
             scene = new Scene(fxmlLoader.load());
-            currentStage.setTitle("Respawnix");
+            currentStage.setTitle("ChatOffline");
             currentStage.setScene(scene);
             currentStage.show();
         } catch (IOException e) {

@@ -1,7 +1,7 @@
 module com.actividades.chatofflinep {
     requires javafx.controls;
-    requires javafx.fxml;
     requires jakarta.xml.bind;
+    requires javafx.fxml;
 
 
     opens com.actividades.chatofflinep to javafx.fxml;

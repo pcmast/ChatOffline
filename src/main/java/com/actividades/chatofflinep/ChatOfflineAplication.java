@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
 import javafx.scene.image.Image;
 
 import java.io.File;
@@ -15,7 +16,7 @@ public class ChatOfflineAplication extends Application{
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(ChatOfflineAplication.class.getResource("pantallaInicioSesion.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Respawnix");
+        stage.setTitle("ChatOffline");
         stage.setScene(scene);
         stage.show();
     }

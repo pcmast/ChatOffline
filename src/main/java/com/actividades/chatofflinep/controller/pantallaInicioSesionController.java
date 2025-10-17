@@ -1,6 +1,8 @@
 package com.actividades.chatofflinep.controller;
 
 import com.actividades.chatofflinep.ChatOfflineAplication;
+import com.actividades.chatofflinep.model.TodosUsuarios;
+import com.actividades.chatofflinep.model.Usuario;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -15,6 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Stack;
 
 public class pantallaInicioSesionController {
@@ -24,7 +27,7 @@ public class pantallaInicioSesionController {
     public TextField txCorreo;
     public Button btnInicioSesion;
 
-    public void initialize(){
+    public void initialize() {
         File imagenRuta = new File("imagenes/mensajeria.png");
         Image image = new Image(imagenRuta.toURI().toString());
         imagenLogo.setImage(image);
@@ -33,18 +36,37 @@ public class pantallaInicioSesionController {
 
 
     public void inicioSesion(MouseEvent mouseEvent) {
+        boolean inicioSesionExitoso = false;
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(ChatOfflineAplication.class.getResource("pantallaInicial.fxml"));
-            Stage currentStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-            Scene scene = null;
-            scene = new Scene(fxmlLoader.load());
-            currentStage.setTitle("Respawnix");
-            currentStage.setScene(scene);
-            currentStage.show();
+            TodosUsuarios todosUsuarios = TodosUsuarios.getInstance();
+
+            List<Usuario> list = todosUsuarios.getUsuarioList();
+
+            for (Usuario usuario : list) {
+                if (usuario.getEmail().equals(txCorreo.getText())) {
+                    if (usuario.getContrasenna().equals(txContrasenna.getText())) {
+                        inicioSesionExitoso = true;
+                        UsuarioActualController.getInstance().setUsuario(usuario);
+                    }
+
+                }
+
+            }
+
+            if (inicioSesionExitoso) {
+                FXMLLoader fxmlLoader = new FXMLLoader(ChatOfflineAplication.class.getResource("pantallaInicial.fxml"));
+                Stage currentStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+                Scene scene = null;
+                scene = new Scene(fxmlLoader.load());
+
+                currentStage.setTitle("ChatOffline");
+                currentStage.setScene(scene);
+                currentStage.centerOnScreen();
+                currentStage.show();
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
 
 
     }
@@ -55,7 +77,7 @@ public class pantallaInicioSesionController {
             Stage currentStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
             Scene scene = null;
             scene = new Scene(fxmlLoader.load());
-            currentStage.setTitle("Respawnix");
+            currentStage.setTitle("ChatOffline");
             currentStage.setScene(scene);
             currentStage.show();
         } catch (IOException e) {

@@ -7,7 +7,7 @@ import jakarta.xml.bind.Unmarshaller;
 
 import java.io.File;
 
-public class XMLManagerUsuariosCollection {
+public class XMLManagerCollection {
 
     public static <T> boolean writeXML(T object, String fileName) {
         boolean result = false;
