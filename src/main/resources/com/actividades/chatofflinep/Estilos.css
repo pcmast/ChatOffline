@@ -60,7 +60,7 @@ btn-bg {
   -fx-border-color: #eee;
   -fx-border-width: 0 0 1 0;
   -fx-border-style: solid;
-  -fx-font-size: 10px;
+  -fx-font-size: 24px;
   -fx-transition: all 0.3s ease;
   -fx-text-fill: black;
 }
@@ -105,3 +105,5 @@ btn-bg {
     -fx-font-size: 14px;
     -fx-padding: 4 10 4 10;
 }
+
+

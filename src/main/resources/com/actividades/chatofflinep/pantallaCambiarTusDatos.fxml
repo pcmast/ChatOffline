@@ -35,24 +35,25 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.actividades.chatofflinep.controller.PantallaCrearContactoController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.actividades.chatofflinep.controller.PantallaCambiarTusDatosController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <TextField fx:id="apodo" layoutX="228.0" layoutY="58.0" promptText="Apodo:" styleClass="simple-textfield" stylesheets="@Estilos.css" />
-            <TextField fx:id="telefono" layoutX="228.0" layoutY="119.0" promptText="Telefono:" styleClass="simple-textfield" stylesheets="@Estilos.css" />
-            <Label layoutX="228.0" layoutY="40.0" text="Opcional" />
-            <ImageView fx:id="imagenNombre" fitHeight="31.0" fitWidth="36.0" layoutX="190.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="imagenTelefono" fitHeight="31.0" fitWidth="36.0" layoutX="190.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="informacionContacto" layoutX="234.0" layoutY="165.0" textFill="RED" />
-            <Button fx:id="crearContacto" layoutX="220.0" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#crearContacto" stylesheets="@Estilos.css" text="Crear Contacto" />
-            <Button fx:id="editarContacto" layoutX="220.0" layoutY="268.0" mnemonicParsing="false" onMouseClicked="#editar" stylesheets="@Estilos.css" text="Editar Contacto" />
-            <Button fx:id="eliminarContacto" layoutX="220.0" layoutY="335.0" mnemonicParsing="false" onMouseClicked="#eliminarContacto" stylesheets="@Estilos.css" text="Eliminar Contacto" />
-            <Button layoutX="14.0" layoutY="335.0" mnemonicParsing="false" onMouseClicked="#pantallaAnterior" stylesheets="@Estilos.css" text="Atras" />
-         </children></AnchorPane>
+            <TextField fx:id="esContrasenna" layoutX="220.0" layoutY="113.0" promptText="Introduce tu contraseña:" styleClass="simple-textfield" stylesheets="@Estilos.css" />
+            <TextField fx:id="contrasenna" layoutX="220.0" layoutY="160.0" promptText="Nueva Contraseña:" styleClass="simple-textfield" stylesheets="@Estilos.css" />
+            <Label layoutX="205.0" layoutY="14.0" text="Cambia tus datos">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Button layoutX="212.0" layoutY="302.0" mnemonicParsing="false" onMouseClicked="#actualizarDatos" stylesheets="@Estilos.css" text="Actualizar Datos" />
+            <Button layoutX="212.0" layoutY="213.0" mnemonicParsing="false" onMouseClicked="#liberarContrasenna" stylesheets="@Estilos.css" text="Contraseña" />
+            <Label fx:id="contrasennaIncorrecta" layoutX="435.0" layoutY="142.0" textFill="RED" />
+         </children>
+    </AnchorPane>
   </children>
 </VBox>

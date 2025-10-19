@@ -40,7 +40,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="567.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.actividades.chatofflinep.controller.pantallaRegistroController">
+<VBox prefHeight="567.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.actividades.chatofflinep.controller.PantallaRegistroController">
    <children>
       <HBox alignment="CENTER" prefHeight="68.0" prefWidth="640.0">
          <children>
@@ -84,6 +84,11 @@
       <HBox alignment="CENTER" prefHeight="47.0" prefWidth="640.0">
          <children>
             <Label onMouseClicked="#iniciarSesion" text="Ya tienes una cuenta Inicia Sesión" textFill="#2200ff" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="47.0" prefWidth="640.0">
+         <children>
+            <Label fx:id="usuarioYaExiste" textFill="RED" />
          </children>
       </HBox>
    </children>

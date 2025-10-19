@@ -38,6 +38,17 @@ public class XMLManagerCollection {
         return result;
     }
 
+    public static <T> void writeXMLObject(T objeto, String ruta) {
+        try {
+            JAXBContext context = JAXBContext.newInstance(objeto.getClass());
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            marshaller.marshal(objeto, new File(ruta));
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
 }

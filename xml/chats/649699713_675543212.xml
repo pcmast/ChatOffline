@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<chat>
+    <usuario1>
+        <nombre>pedro</nombre>
+        <numeroTelefono>649699713</numeroTelefono>
+    </usuario1>
+    <usuario2>
+        <nombre>javi</nombre>
+        <numeroTelefono>675543212</numeroTelefono>
+    </usuario2>
+    <mensajes>
+        <mensaje>
+            <emisor>649699713</emisor>
+            <texto>hola </texto>
+            <adjunto/>
+        </mensaje>
+        <mensaje>
+            <emisor>649699713</emisor>
+            <texto>holaaa</texto>
+            <adjunto/>
+        </mensaje>
+        <mensaje>
+            <emisor>pedro</emisor>
+            <texto></texto>
+            <adjunto>
+                <ruta>C:\Users\G513\Downloads\alsara.png</ruta>
+            </adjunto>
+        </mensaje>
+    </mensajes>
+</chat>

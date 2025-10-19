@@ -5,6 +5,7 @@ import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlRootElement;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +30,11 @@ public class TodosUsuarios {
     }
 
     public List<Usuario> getUsuarioList() {
-       TodosUsuarios usuariosLeidos = XMLManagerCollection.readXML(TodosUsuarios.class, "xml/usuarios");
+        File file = new File("xml/usuarios.xml");
+        TodosUsuarios usuariosLeidos = new TodosUsuarios();
+        if (file.exists()){
+           usuariosLeidos = XMLManagerCollection.readXML(TodosUsuarios.class, "xml/usuarios.xml");
+        }
 
         if (usuariosLeidos != null && usuariosLeidos.getUsuarios() != null) {
             this.usuarioList = usuariosLeidos.getUsuarios();

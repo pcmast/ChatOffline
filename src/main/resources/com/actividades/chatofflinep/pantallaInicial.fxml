@@ -32,24 +32,23 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="761.0" prefWidth="1428.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.actividades.chatofflinep.controller.pantallaInicialController">
+<VBox prefHeight="768.0" prefWidth="1428.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.actividades.chatofflinep.controller.PantallaInicialController">
   <children>
-    <SplitPane fx:id="splitPaneQuieto" dividerPositions="0.46985417835109367" focusTraversable="true" prefHeight="635.0" prefWidth="1442.0" VBox.vgrow="NEVER">
+    <SplitPane fx:id="splitPaneQuieto" dividerPositions="0.46985417835109367" focusTraversable="true" prefHeight="768.0" prefWidth="1428.0" VBox.vgrow="ALWAYS">
       <items>
         <ScrollPane prefHeight="722.0" prefWidth="633.0">
           <content>
@@ -63,7 +62,7 @@
                               <Color red="0.624" green="0.624" blue="0.624" fx:id="x6" />
                            </textFill>
                         </Label>
-                        <ListView fx:id="listChats" layoutX="12.0" layoutY="120.0" prefHeight="596.0" prefWidth="620.0" styleClass="custom-listview" stylesheets="@Estilos.css" />
+                        <ListView fx:id="listContactos" layoutX="12.0" layoutY="120.0" onMouseClicked="#cambiarConversacion" prefHeight="596.0" prefWidth="620.0" styleClass="custom-listview" stylesheets="@Estilos.css" />
                         <ImageView fx:id="imagenAjustes" fitHeight="35.0" fitWidth="38.0" layoutX="19.0" layoutY="663.0" pickOnBounds="true" preserveRatio="true" />
                         <Label layoutX="16.0" layoutY="20.0" text="UniChat">
                            <font>
@@ -80,33 +79,32 @@
                               <Font size="16.0" />
                            </font>
                         </MenuButton>
+                        <Button layoutX="556.0" layoutY="81.0" mnemonicParsing="false" onMouseClicked="#Ajustes" text="Ajustes" />
+                        <Button layoutX="465.0" layoutY="81.0" mnemonicParsing="false" onMouseClicked="#cargarLista" text="Actualizar" />
               </children>
             </AnchorPane>
           </content>
         </ScrollPane>
-        <AnchorPane minWidth="258.0" prefHeight="732.0" prefWidth="791.0">
+        <AnchorPane minWidth="258.0" prefHeight="755.0" prefWidth="754.0">
                <children>
-                  <ListView layoutX="35.0" layoutY="33.0" prefHeight="698.0" prefWidth="683.0" />
+                  <ListView fx:id="listViewChats" layoutX="35.0" layoutY="33.0" prefHeight="645.0" prefWidth="683.0" stylesheets="@Estilos.css" />
+                  <TextField fx:id="mensaje" layoutX="111.0" layoutY="700.0" prefHeight="34.0" prefWidth="335.0" promptText="Enviar Mensaje" styleClass="simple-textfield" stylesheets="@Estilos.css" />
+                  <Button layoutX="456.0" layoutY="702.0" mnemonicParsing="false" onMouseClicked="#enviarMensaje" text="Enviar" />
+                  <ImageView fx:id="imagenAdjuntar" fitHeight="23.0" fitWidth="25.0" layoutX="79.0" layoutY="706.0" onMouseClicked="#adjuntarImagenesOArchivos" pickOnBounds="true" preserveRatio="true" />
+                  <Label layoutX="521.0" layoutY="708.0" onMouseClicked="#exportarCSV" text="Exportar CSV" textFill="#2600ff" />
+                  <TextField fx:id="nombreDelCSV" layoutX="607.0" layoutY="704.0" prefHeight="26.0" prefWidth="102.0" promptText="Nombre CSV" />
+                  <Label fx:id="exportadoCSV" layoutX="607.0" layoutY="734.0" onMouseClicked="#quitar" textFill="#bf5252" />
+                  <MenuButton fx:id="tresPuntos1" layoutX="684.0" layoutY="687.0" mnemonicParsing="false" onMouseClicked="#menu" stylesheets="@Estilos.css" text="⋮">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#informacion" text="Información" />
+                     </items>
+                  </MenuButton>
                </children>
         </AnchorPane>
       </items>
     </SplitPane>
-    <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">
-      <children>
-        <Label maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="Left status" HBox.hgrow="ALWAYS">
-          <font>
-            <Font size="11.0" fx:id="x3" />
-          </font>
-          <textFill>
-            <Color red="0.625" green="0.625" blue="0.625" fx:id="x4" />
-          </textFill>
-        </Label>
-        <Pane prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
-        <Label font="$x3" maxWidth="-1.0" text="Right status" textFill="$x4" HBox.hgrow="NEVER" />
-      </children>
-      <padding>
-        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-      </padding>
-    </HBox>
   </children>
 </VBox>

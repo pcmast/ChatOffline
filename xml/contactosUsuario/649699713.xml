@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ContactosUsuario>
+    <contacto>
+        <apodo>javi</apodo>
+        <numeroTelefono>675543212</numeroTelefono>
+        <usuario>
+            <numeroTelefono>649699713</numeroTelefono>
+        </usuario>
+    </contacto>
+</ContactosUsuario>

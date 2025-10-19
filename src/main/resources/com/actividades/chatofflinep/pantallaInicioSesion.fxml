@@ -43,7 +43,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" prefHeight="567.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.actividades.chatofflinep.controller.pantallaInicioSesionController">
+<VBox alignment="TOP_CENTER" prefHeight="567.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.actividades.chatofflinep.controller.PantallaInicioSesionController">
   <children>
       <ImageView fx:id="imagenLogo" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
          <VBox.margin>
