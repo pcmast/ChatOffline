@@ -11,20 +11,18 @@
     <mensajes>
         <mensaje>
             <emisor>649699713</emisor>
-            <texto>hola </texto>
-            <adjunto/>
-        </mensaje>
-        <mensaje>
-            <emisor>649699713</emisor>
-            <texto>holaaa</texto>
-            <adjunto/>
+            <texto>Hola</texto>
+            <ruta></ruta>
         </mensaje>
         <mensaje>
             <emisor>pedro</emisor>
             <texto></texto>
-            <adjunto>
-                <ruta>C:\Users\G513\Downloads\alsara.png</ruta>
-            </adjunto>
+            <ruta>media/alsara.png</ruta>
+        </mensaje>
+        <mensaje>
+            <emisor>649699713</emisor>
+            <texto>hola antonio como estas tio </texto>
+            <ruta></ruta>
         </mensaje>
     </mensajes>
 </chat>

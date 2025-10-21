@@ -1,5 +1,6 @@
 package com.actividades.chatofflinep.model;
 
+import com.actividades.chatofflinep.controller.UsuarioActualController;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
@@ -17,9 +18,8 @@ public class Mensaje {
     @XmlElement(name = "texto")
     private String texto;
 
-    @XmlElementWrapper(name = "adjunto")
     @XmlElement(name = "ruta")
-    private List<String> archivos = new ArrayList<>();
+    private String ruta = "";
 
 
     public Mensaje() {
@@ -30,22 +30,18 @@ public class Mensaje {
         this.texto = texto;
     }
 
-    public Mensaje(String emisor, String texto, List<String> archivos) {
+    public Mensaje(String emisor, String texto, String ruta) {
         this.emisor = emisor;
         this.texto = texto;
-        this.archivos = archivos;
+        this.ruta = ruta;
     }
 
-    public void insertarArchivo(String archivo){
-    archivos.add(archivo);
-
+    public String getRuta() {
+        return ruta;
     }
 
-    public List<String> getArchivos() {
-        return archivos;
-    }
-    public void setArchivos(List<String> archivos) {
-        this.archivos = archivos;
+    public void setRuta(String ruta) {
+        this.ruta = ruta;
     }
 
     public String getEmisor() {
@@ -66,9 +62,25 @@ public class Mensaje {
 
     @Override
     public String toString() {
-        return emisor + ": " + texto;
-    }
+        // Obtener usuario actual
+        Usuario usuarioActual = UsuarioActualController.getInstance().getUsuario();
 
+        String nombreEmisor = emisor;
+
+        if (emisor.equals(usuarioActual.getNumeroTelefono()) || emisor.equals(usuarioActual.getNombre())) {
+            nombreEmisor = usuarioActual.getNombre();
+        } else {
+            // Buscar en los contactos del usuario actual
+            for (Contacto c : usuarioActual.getContactos()) {
+                if (c.getNumeroTelefono().equals(emisor)) {
+                    nombreEmisor = c.getApodo();
+                    break;
+                }
+            }
+        }
+
+        return nombreEmisor + ": " + texto;
+    }
 
 }
 

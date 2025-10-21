@@ -2,28 +2,25 @@ package com.actividades.chatofflinep.controller;
 
 import com.actividades.chatofflinep.ChatOfflineAplication;
 import com.actividades.chatofflinep.dataAccess.XMLManagerCollection;
-import com.actividades.chatofflinep.model.Chat;
-import com.actividades.chatofflinep.model.Contacto;
-import com.actividades.chatofflinep.model.Mensaje;
-import com.actividades.chatofflinep.model.Usuario;
+import com.actividades.chatofflinep.model.*;
 import com.actividades.chatofflinep.utils.Utilidades;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import javax.swing.*;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
@@ -38,7 +35,7 @@ public class PantallaInicialController {
     public ImageView imagenAjustes;
     public MenuButton tresPuntos;
     public SplitPane splitPaneQuieto;
-    public ListView<Chat> listViewChats;
+    public ListView<Mensaje> listViewChats;
     public TextField mensaje;
     public ImageView imagenAdjuntar;
     public TextField nombreDelCSV;
@@ -57,6 +54,66 @@ public class PantallaInicialController {
         });
 
         iniciarLista();
+
+        listViewChats.setCellFactory(param -> new ListCell<Mensaje>() {
+            private final ImageView imageView = new ImageView();
+            private final Label label = new Label();
+            private final VBox vbox = new VBox(label, imageView);
+
+            {
+                vbox.setSpacing(5);
+                imageView.setFitHeight(150);
+                imageView.setFitWidth(150);
+                imageView.setPreserveRatio(true);
+            }
+
+            @Override
+            protected void updateItem(Mensaje mensaje, boolean empty) {
+                super.updateItem(mensaje, empty);
+
+                if (empty || mensaje == null) {
+                    setGraphic(null);
+                    setText(null);
+                    setStyle("");
+                } else {
+                    Usuario usuarioActual = UsuarioActualController.getInstance().getUsuario();
+                    String nombreMostrar = mensaje.getEmisor();
+
+                    if (mensaje.getEmisor().equals(usuarioActual.getNumeroTelefono())) {
+                        nombreMostrar = usuarioActual.getNombre();
+                    } else {
+                        List<Contacto> lista = usuarioActual.getContactos();
+
+                        for (Contacto contacto : lista){
+                            if (contacto.getNumeroTelefono().equals(mensaje.getEmisor())){
+                                nombreMostrar = contacto.getApodo();
+                            }
+
+                        }
+
+                    }
+
+                    label.setText(nombreMostrar + ": " + (mensaje.getTexto() != null ? mensaje.getTexto() : ""));
+
+                    if (mensaje.getRuta() != null) {
+                        File archivo = new File(mensaje.getRuta());
+
+                        Image image = new Image(archivo.toURI().toString());
+                        imageView.setImage(image);
+
+                    }
+                    if (mensaje.getEmisor().equals(usuarioActual.getNumeroTelefono())) {
+                        vbox.setStyle("-fx-background-color: #a5e8a3; -fx-padding: 5;");
+                        vbox.setAlignment(Pos.CENTER_RIGHT);
+                    } else {
+                        vbox.setStyle("-fx-background-color: #e6e6e6; -fx-padding: 5;");
+                        vbox.setAlignment(Pos.CENTER_LEFT);
+                    }
+
+                    setGraphic(vbox);
+                }
+            }
+        });
 
     }
 
@@ -238,20 +295,19 @@ public class PantallaInicialController {
 
     private void mostrarChatsDelContacto(Contacto contacto) {
         Usuario usuarioActual = UsuarioActualController.getInstance().getUsuario();
-        List<Chat> chatsDelContacto = new ArrayList<>();
 
         for (Chat chat : usuarioActual.getList()) {
             if (contacto != null) {
                 if (chat.getUsuario1().getNumeroTelefono().equals(contacto.getNumeroTelefono()) || chat.getUsuario2().getNumeroTelefono().equals(contacto.getNumeroTelefono())) {
-                    chatsDelContacto.add(chat);
+
+                    ObservableList<Mensaje> observableMensajes = FXCollections.observableArrayList(chat.getMensajes());
+                    listViewChats.setItems(observableMensajes);
+                    if (!observableMensajes.isEmpty()) {
+                        listViewChats.getSelectionModel().selectLast();
+                    }
+                    break;
                 }
             }
-        }
-
-        ObservableList<Chat> observableChats = FXCollections.observableArrayList(chatsDelContacto);
-        listViewChats.setItems(observableChats);
-        if (!observableChats.isEmpty()) {
-            listViewChats.getSelectionModel().selectFirst();
         }
     }
 
@@ -279,33 +335,58 @@ public class PantallaInicialController {
         if (resultado == JFileChooser.APPROVE_OPTION) {
             File archivoSeleccionado = fileChooser.getSelectedFile();
 
-            File carpetaDestino = new File("archivosAdjuntos");
+            File carpetaDestino = new File("media");
             if (!carpetaDestino.exists()) {
                 carpetaDestino.mkdirs();
             }
 
             File archivoDestino = new File(carpetaDestino, archivoSeleccionado.getName());
 
-            try {
-                Files.copy(archivoSeleccionado.toPath(), archivoDestino.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            try (InputStream in = new FileInputStream(archivoSeleccionado);
+                 OutputStream out = new FileOutputStream(archivoDestino)) {
 
+                byte[] buffer = new byte[4096];
+                int bytesLeidos;
+
+
+                while ((bytesLeidos = in.read(buffer)) != -1) {
+                    out.write(buffer, 0, bytesLeidos);
+                }
+                out.flush();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Chat chat = listViewChats.getSelectionModel().getSelectedItem();
+
+            Contacto contactoSeleccionado = listContactos.getSelectionModel().getSelectedItem();
+            if (contactoSeleccionado == null) return;
+
+            Chat chat = null;
+            Usuario usuarioActual = UsuarioActualController.getInstance().getUsuario();
+            for (Chat c : usuarioActual.getList()) {
+                if (c.getUsuario1().getNumeroTelefono().equals(contactoSeleccionado.getNumeroTelefono()) ||
+                        c.getUsuario2().getNumeroTelefono().equals(contactoSeleccionado.getNumeroTelefono())) {
+                    chat = c;
+                    break;
+                }
+            }
+            if (chat == null) return;
+
             List<Mensaje> mensajes = chat.getMensajes();
             Mensaje mensaje1 = new Mensaje();
             mensaje1.setEmisor(UsuarioActualController.getInstance().getUsuario().getNombre());
-            if (mensaje.getText().isEmpty()){
+            if (mensaje.getText().isEmpty()) {
                 mensaje1.setTexto("");
-            }else {
+            } else {
                 mensaje1.setTexto(mensaje.getText());
             }
-
-            mensaje1.insertarArchivo(archivoSeleccionado.getPath());
+            String rutaHaciaProyecto = "media/" + archivoSeleccionado.getName();
+            mensaje1.setRuta(rutaHaciaProyecto);
             mensajes.add(mensaje1);
-            XMLManagerCollection.writeXML(chat, "xml/chats/"+chat.getUsuario1().getNumeroTelefono()+"_"+chat.getUsuario2().getNumeroTelefono()+".xml");
 
+            XMLManagerCollection.writeXML(chat, "xml/chats/" + chat.getUsuario1().getNumeroTelefono() + "_" + chat.getUsuario2().getNumeroTelefono() + ".xml");
+
+            listViewChats.setItems(FXCollections.observableArrayList(mensajes));
+            listViewChats.refresh();
         }
 
 
@@ -337,21 +418,35 @@ public class PantallaInicialController {
             carpeta.mkdirs();
         }
 
-        if (!nombreDelCSV.getText().isEmpty() && listViewChats.getSelectionModel().getSelectedItem() != null) {
-            try {
-                String nameFile = "xml/exportarCSV/" + nombreDelCSV.getText()+".csv";
-                FileWriter fn = new FileWriter(nameFile);
-                Chat chat = listViewChats.getSelectionModel().getSelectedItem();
+            if (!nombreDelCSV.getText().isEmpty() && listContactos.getSelectionModel().getSelectedItem() != null) {
+                try {
+                    String nameFile = "xml/exportarCSV/" + nombreDelCSV.getText() + ".csv";
+                    FileWriter fn = new FileWriter(nameFile);
 
-                fn.write(chat.toString() + System.lineSeparator());
-                exportadoCSV.setText("¡Exportado Con Exito!");
+                    Contacto contactoSeleccionado = listContactos.getSelectionModel().getSelectedItem();
+                    Usuario usuarioActual = UsuarioActualController.getInstance().getUsuario();
+                    Chat chatSeleccionado = null;
 
-                fn.close();
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
+                    for (Chat chat : usuarioActual.getList()) {
+                        if (chat.getUsuario1().getNumeroTelefono().equals(contactoSeleccionado.getNumeroTelefono()) ||
+                                chat.getUsuario2().getNumeroTelefono().equals(contactoSeleccionado.getNumeroTelefono())) {
+                            chatSeleccionado = chat;
+                            break;
+                        }
+                    }
+
+                    if (chatSeleccionado != null) {
+                        fn.write(chatSeleccionado.toString() + System.lineSeparator());
+                        exportadoCSV.setText("¡Exportado Con Exito!");
+                    }
+
+                    fn.close();
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
             }
 
-        }
+
 
     }
 
@@ -371,7 +466,18 @@ public class PantallaInicialController {
             stage.setTitle("ChatOffline");
             stage.setScene(scene);
             PantallaInformacionChatController controller = fxmlLoader.getController();
-            Chat chatSeleccionado = listViewChats.getSelectionModel().getSelectedItem();
+
+            Contacto contactoSeleccionado = listContactos.getSelectionModel().getSelectedItem();
+            Usuario usuarioActual = UsuarioActualController.getInstance().getUsuario();
+            Chat chatSeleccionado = null;
+
+            for (Chat chat : usuarioActual.getList()) {
+                if (chat.getUsuario1().getNumeroTelefono().equals(contactoSeleccionado.getNumeroTelefono()) ||
+                        chat.getUsuario2().getNumeroTelefono().equals(contactoSeleccionado.getNumeroTelefono())) {
+                    chatSeleccionado = chat;
+                    break;
+                }
+            }
             controller.setChat(chatSeleccionado);
             stage.initOwner(listContactos.getScene().getWindow());
             stage.initModality(Modality.WINDOW_MODAL);

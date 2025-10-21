@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ContactosUsuario>
     <contacto>
-        <apodo>javilon</apodo>
-        <numeroTelefono>675543212</numeroTelefono>
+        <apodo>pedrito</apodo>
+        <numeroTelefono>649699713</numeroTelefono>
         <usuario>
-            <numeroTelefono>649699713</numeroTelefono>
+            <numeroTelefono>675543212</numeroTelefono>
         </usuario>
     </contacto>
 </ContactosUsuario>
