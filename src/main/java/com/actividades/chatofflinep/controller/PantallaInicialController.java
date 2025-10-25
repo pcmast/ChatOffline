@@ -609,6 +609,7 @@ public class PantallaInicialController {
     public void descargarZIP(MouseEvent mouseEvent) {
         try {
             Contacto contactoSeleccionado = listContactos.getSelectionModel().getSelectedItem();
+            if (contactoSeleccionado != null) {
                 Usuario usuarioActual = UsuarioActualController.getInstance().getUsuario();
                 Chat chatSeleccionado = null;
 
@@ -661,10 +662,10 @@ public class PantallaInicialController {
                 exportadoAZIP.setText("Exportado a ZIP Correctamente");
 
 
-            } catch(Exception e){
-                throw new RuntimeException(e);
             }
-
+        }catch(Exception e){
+            throw new RuntimeException(e);
+        }
     }
     public void quitarZIP(MouseEvent mouseEvent) {
         exportadoAZIP.setText("");

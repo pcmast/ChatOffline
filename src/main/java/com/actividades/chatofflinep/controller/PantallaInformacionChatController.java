@@ -77,7 +77,7 @@ public class PantallaInformacionChatController {
 
         Mensaje mensajeLargo = mensajes.stream()
                 .max(Comparator.comparingInt(m -> m.getTexto().length()))
-                .orElse(new Mensaje("", ""));
+                .orElse(new Mensaje("", "Ningun mensaje enviado"));
 
         mensajeMasLargo.setText(mensajeLargo.getTexto());
 

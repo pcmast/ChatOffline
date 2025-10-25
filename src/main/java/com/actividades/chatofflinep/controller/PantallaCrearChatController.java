@@ -65,6 +65,7 @@ public class PantallaCrearChatController {
         usuario.setNumeroTelefono(usuarioOriginal.getNumeroTelefono());
         usuario.setContrasenna(null);
         usuario.setContactos(null);
+        if (listaContactos.getSelectionModel().getSelectedItem() != null){
 
         String numeroTelefono = listaContactos.getSelectionModel().getSelectedItem().getNumeroTelefono();
         TodosUsuarios listaUsuarios = XMLManagerCollection.readXML(TodosUsuarios.class, "xml/usuarios.xml");
@@ -92,6 +93,8 @@ public class PantallaCrearChatController {
         Stage stageActual = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 
         stageActual.close();
+
+        }
 
     }
 
