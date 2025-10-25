@@ -5,6 +5,7 @@ import com.actividades.chatofflinep.dataAccess.XMLManagerCollection;
 import com.actividades.chatofflinep.model.TodosUsuarios;
 import com.actividades.chatofflinep.model.Usuario;
 import com.actividades.chatofflinep.utils.Utilidades;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -21,13 +22,18 @@ import java.util.List;
 
 public class PantallaRegistroController {
 
-
-    public TextField correo;
-    public PasswordField constrasenna;
-    public TextField nombre;
-    public TextField numeroTelefono;
-    public Label telefonoInvalido;
-    public Label InformacionDelRegistro;
+    @FXML
+    private TextField correo;
+    @FXML
+    private PasswordField constrasenna;
+    @FXML
+    private TextField nombre;
+    @FXML
+    private TextField numeroTelefono;
+    @FXML
+    private Label telefonoInvalido;
+    @FXML
+    private Label InformacionDelRegistro;
 
 
     public void registrado(MouseEvent mouseEvent) {

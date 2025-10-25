@@ -8,6 +8,7 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -39,17 +40,28 @@ import java.util.zip.ZipOutputStream;
 public class PantallaInicialController {
 
 
-    public ListView<Contacto> listContactos;
-    public ImageView imagenAjustes;
-    public MenuButton tresPuntos;
-    public SplitPane splitPaneQuieto;
-    public ListView<Mensaje> listViewChats;
-    public TextField mensaje;
-    public ImageView imagenAdjuntar;
-    public TextField nombreDelCSV;
-    public Label exportadoCSV;
-    public ImageView exportarAZip;
-    public Label exportadoAZIP;
+    @FXML
+    private ListView<Contacto> listContactos;
+    @FXML
+    private ImageView imagenAjustes;
+    @FXML
+    private MenuButton tresPuntos;
+    @FXML
+    private SplitPane splitPaneQuieto;
+    @FXML
+    private ListView<Mensaje> listViewChats;
+    @FXML
+    private TextField mensaje;
+    @FXML
+    private ImageView imagenAdjuntar;
+    @FXML
+    private TextField nombreDelCSV;
+    @FXML
+    private Label exportadoCSV;
+    @FXML
+    private ImageView exportarAZip;
+    @FXML
+    private Label exportadoAZIP;
 
 
     private List<Chat> list = new ArrayList<>();

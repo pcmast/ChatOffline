@@ -6,6 +6,7 @@ import com.actividades.chatofflinep.model.Contacto;
 import com.actividades.chatofflinep.model.ContactosUsuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -21,8 +22,8 @@ import java.util.List;
 
 public class PantallaContactosController {
 
-
-    public ListView<Contacto> listaContactos;
+    @FXML
+    private ListView<Contacto> listaContactos;
 
 
     public void initialize() {

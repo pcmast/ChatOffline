@@ -5,6 +5,7 @@ import com.actividades.chatofflinep.dataAccess.XMLManagerCollection;
 import com.actividades.chatofflinep.model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -20,9 +21,10 @@ import java.util.stream.Collectors;
 
 public class PantallaCrearChatController {
 
-
-    public TextField buscarContacto;
-    public ListView<Contacto> listaContactos;
+    @FXML
+    private TextField buscarContacto;
+    @FXML
+    private ListView<Contacto> listaContactos;
 
 
     public void initialize() {

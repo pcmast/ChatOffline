@@ -3,6 +3,7 @@ package com.actividades.chatofflinep.controller;
 import com.actividades.chatofflinep.model.Chat;
 import com.actividades.chatofflinep.model.Mensaje;
 import com.actividades.chatofflinep.model.Usuario;
+import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 import java.util.Arrays;
@@ -13,14 +14,20 @@ import java.util.stream.Collectors;
 
 public class PantallaInformacionChatController {
 
-
-    public Label numeroMensajes;
-    public Label palabraRepetida;
-    public Label numeroMensajesUsuario1;
-    public Label numeroMensajesUsuario2;
-    public Label mensajeMasLargo;
-    public Label primerMensaje;
-    public Label ultimoMensaje;
+    @FXML
+    private Label numeroMensajes;
+    @FXML
+    private Label palabraRepetida;
+    @FXML
+    private Label numeroMensajesUsuario1;
+    @FXML
+    private Label numeroMensajesUsuario2;
+    @FXML
+    private Label mensajeMasLargo;
+    @FXML
+    private Label primerMensaje;
+    @FXML
+    private Label ultimoMensaje;
 
     private Chat chat;
 
@@ -57,7 +64,6 @@ public class PantallaInformacionChatController {
                 .count();
 
 
-
         numeroMensajesUsuario1.setText("Mensajes de " + chat.getUsuario1().getNombre() + ": " + mensajesUsuario1);
         numeroMensajesUsuario2.setText("Mensajes de " + chat.getUsuario2().getNombre() + ": " + mensajesUsuario2);
 
@@ -82,14 +88,17 @@ public class PantallaInformacionChatController {
         mensajeMasLargo.setText(mensajeLargo.getTexto());
 
         String primeroDeLosMensajes = mensajes.stream().findFirst().map(m -> {
-                    if (m.getTexto() != null && !m.getTexto().trim().isEmpty()) return m.getTexto();
-                    if (m.getRuta() != null) return "Archivo adjunto";
-                    return "(mensaje vacío)";}).orElse("Sin mensajes");
+            if (m.getTexto() != null && !m.getTexto().trim().isEmpty()) return m.getTexto();
+            if (m.getRuta() != null) return "Archivo adjunto";
+            return "(mensaje vacío)";
+        }).orElse("Sin mensajes");
 
 
         String ultimoDeLosMensajes = mensajes.stream().reduce((first, second) -> second).map(m -> {
-                    if (m.getTexto() != null && !m.getTexto().trim().isEmpty()) return m.getTexto();
-                    if (m.getRuta() != null) return "Archivo adjunto";return "(mensaje vacío)";}).orElse("Sin mensajes");
+            if (m.getTexto() != null && !m.getTexto().trim().isEmpty()) return m.getTexto();
+            if (m.getRuta() != null) return "Archivo adjunto";
+            return "(mensaje vacío)";
+        }).orElse("Sin mensajes");
 
         primerMensaje.setText(primeroDeLosMensajes);
         ultimoMensaje.setText(ultimoDeLosMensajes);
