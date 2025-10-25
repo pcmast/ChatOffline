@@ -26,18 +26,15 @@ public class Usuario implements Serializable {
     @XmlElement
     private String contrasenna;
     @XmlElement
-    private String estadoLinea;
-    @XmlElement
     private List<Contacto> contactos = new ArrayList<>();
     @XmlElement
     private List<Chat> list = new ArrayList<>();
 
-    public Usuario(String nombre, String numeroTelefono, String email, String contrasenna, String estadoLinea, List<Contacto> contactos, List<Chat> list) {
+    public Usuario(String nombre, String numeroTelefono, String email, String contrasenna, List<Contacto> contactos, List<Chat> list) {
         this.nombre = nombre;
         this.numeroTelefono = numeroTelefono;
         this.email = email;
         this.contrasenna = contrasenna;
-        this.estadoLinea = estadoLinea;
         this.contactos = contactos;
         this.list = list;
     }
@@ -81,13 +78,6 @@ public class Usuario implements Serializable {
         this.email = email;
     }
 
-    public String getEstadoLinea() {
-        return estadoLinea;
-    }
-
-    public void setEstadoLinea(String estadoLinea) {
-        this.estadoLinea = estadoLinea;
-    }
 
     public boolean annadirContacto(String telefono){
         boolean annadido = Utilidades.esNumeroDeTelefono(telefono);

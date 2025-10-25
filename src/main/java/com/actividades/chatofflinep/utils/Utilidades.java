@@ -16,32 +16,20 @@ public class Utilidades {
         String limpio = cadena.replaceAll("[\\s\\-()]", "");
         return limpio.matches("^[67][0-9]{8}$");
     }
+    public static String limpiarNumeroTelefono(String cadena) {
+        if (cadena == null) return "";
+        cadena = cadena.trim();
+        return cadena.replaceAll("[\\p{Zs}\\s\\u00A0\\-()]", "");
+    }
 
+    public static boolean esCorreoElectronicoValido(String correo) {
+        if (correo == null || correo.isEmpty()) {
+            return false;
+        }
 
-//    public static void guardarCSV(String nombreArchivo, String contenido) {
-//        FileChooser fileChooser = new FileChooser();
-//        fileChooser.setTitle("Guardar archivo CSV");
-//
-//        fileChooser.getExtensionFilters().add(
-//                new FileChooser.ExtensionFilter("Archivo CSV", "*.csv")
-//        );
-//
-//        File archivo = fileChooser.showSaveDialog(null);
-//
-//        if (archivo != null) {
-//            if (!archivo.getName().toLowerCase().endsWith(".csv")) {
-//                archivo = new File(archivo.getAbsolutePath() + ".csv");
-//            }
-//
-//            try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo))) {
-//                writer.write(contenido);
-//                System.out.println("Archivo CSV guardado en: " + archivo.getAbsolutePath());
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
+        String patronCorreo = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
 
-
+        return correo.matches(patronCorreo);
+    }
 
 }

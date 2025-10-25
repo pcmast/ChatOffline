@@ -7,10 +7,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 
 public class PantallaDatosPersonalesController {
@@ -42,6 +44,9 @@ public class PantallaDatosPersonalesController {
             stage.setScene(scene);
             Stage owner = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
             stage.setResizable(false);
+            File imagenURL = new File("imagenes/iconoApp.png");
+            Image image = new Image(imagenURL.toURI().toString());
+            stage.getIcons().add(image);
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(owner);
             stage.showAndWait();

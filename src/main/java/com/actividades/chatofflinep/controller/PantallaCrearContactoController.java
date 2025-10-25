@@ -10,9 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -141,10 +139,24 @@ public class PantallaCrearContactoController {
             pantallaAnterior(mouseEvent);
         }
     }
+    private boolean mostrarAlertaConfirmacion(String titulo, String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+
+        ButtonType botonSi = new ButtonType("Sí", ButtonBar.ButtonData.OK_DONE);
+        ButtonType botonNo = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(botonSi, botonNo);
+
+        return alert.showAndWait().filter(respuesta -> respuesta == botonSi).isPresent();
+    }
 
     public void eliminarContacto(MouseEvent mouseEvent) {
-        UsuarioActualController.getInstance().getUsuario().eliminarContacto(contacto);
-        pantallaAnterior(mouseEvent);
+        if (mostrarAlertaConfirmacion("Confirmar eliminación", "¿Deseas eliminar este contacto?")) {
+            UsuarioActualController.getInstance().getUsuario().eliminarContacto(contacto);
+            pantallaAnterior(mouseEvent);
+        }
 
 
     }

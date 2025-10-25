@@ -106,4 +106,16 @@ btn-bg {
     -fx-padding: 4 10 4 10;
 }
 
+.formulario-box {
+    -fx-background-color: white;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.5, 0, 3);
+    -fx-padding: 30;
+    -fx-spacing: 15;
+    -fx-alignment: center;
+}
+
 

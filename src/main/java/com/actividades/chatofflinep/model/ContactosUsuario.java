@@ -13,7 +13,8 @@ public class ContactosUsuario {
     @XmlElement(name = "contacto")
     private List<Contacto> contactos = new ArrayList<>();
 
-    public ContactosUsuario() { }
+    public ContactosUsuario() {
+    }
 
     public ContactosUsuario(List<Contacto> contactos) {
         this.contactos = contactos;

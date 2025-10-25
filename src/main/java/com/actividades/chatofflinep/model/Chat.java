@@ -3,6 +3,7 @@ package com.actividades.chatofflinep.model;
 import com.actividades.chatofflinep.dataAccess.XMLManagerCollection;
 import jakarta.xml.bind.annotation.*;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,8 +32,8 @@ public class Chat {
         this.mensajes = mensajes;
     }
 
-    public void agregarMensaje(Usuario emisor, String texto) {
-        Mensaje mensaje = new Mensaje(emisor.getNumeroTelefono(), texto);
+    public void agregarMensaje(Usuario emisor, String texto, LocalTime horaEnvio) {
+        Mensaje mensaje = new Mensaje(emisor.getNumeroTelefono(), texto, horaEnvio);
         mensajes.add(mensaje);
     }
 
@@ -65,14 +66,12 @@ public class Chat {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (Mensaje mensaje : mensajes) {
-            // Comprobamos quién es el emisor y obtenemos su nombre
-            String nombreEmisor = mensaje.getEmisor().equals(Usuario1.getNumeroTelefono())
-                    ? Usuario1.getNombre()
-                    : Usuario2.getNombre();
-            sb.append(nombreEmisor)
-                    .append(": ")
-                    .append(mensaje.getTexto())
-                    .append("\n");
+            String nombreEmisor = mensaje.getEmisor().equals(Usuario1.getNumeroTelefono()) ? Usuario1.getNombre() : Usuario2.getNombre();
+            if (mensaje.getRuta() != null && !mensaje.getRuta().isEmpty()) {
+                sb.append(nombreEmisor).append(": ").append(mensaje.getRuta()).append("\n");
+            } else {
+                sb.append(nombreEmisor).append(": ").append(mensaje.getTexto()).append("\n");
+            }
         }
         return sb.toString();
     }

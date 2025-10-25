@@ -42,54 +42,58 @@
 
 <VBox prefHeight="567.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.actividades.chatofflinep.controller.PantallaRegistroController">
    <children>
-      <HBox alignment="CENTER" prefHeight="68.0" prefWidth="640.0">
+      <VBox prefHeight="439.0" prefWidth="807.0" style="-fx-background-color: #e9ebee;" styleClass="formulario-box" stylesheets="@Estilos.css">
          <children>
-            <Label text="Registrate">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Label>
+            <HBox alignment="CENTER" prefHeight="68.0" prefWidth="640.0">
+               <children>
+                  <Label text="Registrate">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="56.0" prefWidth="640.0">
+               <children>
+                  <TextField fx:id="correo" promptText="Correo" styleClass="simple-textfield" stylesheets="@Estilos.css" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="56.0" prefWidth="640.0">
+               <children>
+                  <PasswordField fx:id="constrasenna" promptText="Contraseña" styleClass="simple-textfield" stylesheets="@Estilos.css" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="56.0" prefWidth="640.0">
+               <children>
+                  <TextField fx:id="nombre" promptText="Nombre" styleClass="simple-textfield" stylesheets="@Estilos.css" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="56.0" prefWidth="640.0">
+               <children>
+                  <TextField fx:id="numeroTelefono" promptText="Numero de telefono" styleClass="simple-textfield" stylesheets="@Estilos.css" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="28.0" prefWidth="807.0">
+               <children>
+                  <Label fx:id="telefonoInvalido" textFill="RED" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="56.0" prefWidth="640.0">
+               <children>
+                  <Button mnemonicParsing="false" onMouseClicked="#registrado" stylesheets="@Estilos.css" text="Registrarse" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="47.0" prefWidth="640.0">
+               <children>
+                  <Label onMouseClicked="#iniciarSesion" text="Ya tienes una cuenta Inicia Sesión" textFill="#2200ff" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="47.0" prefWidth="640.0">
+               <children>
+                  <Label fx:id="InformacionDelRegistro" textFill="RED" />
+               </children>
+            </HBox>
          </children>
-      </HBox>
-      <HBox alignment="CENTER" prefHeight="56.0" prefWidth="640.0">
-         <children>
-            <TextField fx:id="correo" promptText="Correo" styleClass="simple-textfield" stylesheets="@Estilos.css" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" prefHeight="56.0" prefWidth="640.0">
-         <children>
-            <PasswordField fx:id="constrasenna" promptText="Contraseña" styleClass="simple-textfield" stylesheets="@Estilos.css" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" prefHeight="56.0" prefWidth="640.0">
-         <children>
-            <TextField fx:id="nombre" promptText="Nombre" styleClass="simple-textfield" stylesheets="@Estilos.css" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" prefHeight="56.0" prefWidth="640.0">
-         <children>
-            <TextField fx:id="numeroTelefono" promptText="Numero de telefono" styleClass="simple-textfield" stylesheets="@Estilos.css" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" prefHeight="28.0" prefWidth="807.0">
-         <children>
-            <Label fx:id="telefonoInvalido" textFill="RED" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" prefHeight="56.0" prefWidth="640.0">
-         <children>
-            <Button mnemonicParsing="false" onMouseClicked="#registrado" stylesheets="@Estilos.css" text="Registrarse" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" prefHeight="47.0" prefWidth="640.0">
-         <children>
-            <Label onMouseClicked="#iniciarSesion" text="Ya tienes una cuenta Inicia Sesión" textFill="#2200ff" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" prefHeight="47.0" prefWidth="640.0">
-         <children>
-            <Label fx:id="usuarioYaExiste" textFill="RED" />
-         </children>
-      </HBox>
+      </VBox>
    </children>
 </VBox>

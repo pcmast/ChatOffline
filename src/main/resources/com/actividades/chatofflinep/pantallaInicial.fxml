@@ -43,33 +43,29 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
 <VBox prefHeight="768.0" prefWidth="1428.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.actividades.chatofflinep.controller.PantallaInicialController">
   <children>
-    <SplitPane fx:id="splitPaneQuieto" dividerPositions="0.46985417835109367" focusTraversable="true" prefHeight="768.0" prefWidth="1428.0" VBox.vgrow="ALWAYS">
+    <SplitPane fx:id="splitPaneQuieto" dividerPositions="0.46985417835109367" focusTraversable="true" prefHeight="768.0" prefWidth="1428.0" style="-fx-background-color: #f5f6fa;" VBox.vgrow="ALWAYS">
       <items>
-        <ScrollPane prefHeight="722.0" prefWidth="633.0">
+        <ScrollPane prefHeight="722.0" prefWidth="633.0" style="-fx-background-color: #2f3640;">
           <content>
-            <AnchorPane id="Content" minHeight="-1.0" minWidth="650.0" prefHeight="716.0" prefWidth="666.0">
+            <AnchorPane id="Content" minHeight="-1.0" minWidth="650.0" prefHeight="779.0" prefWidth="739.0" style="-fx-background-color: #2f3640;">
               <children>
-                <Label alignment="CENTER" layoutX="6.0" layoutY="78.0" style="&#10;" text="Chats" textAlignment="CENTER" wrapText="false">
+                <Label alignment="CENTER" layoutX="6.0" layoutY="78.0" style="&#10;" text="Chats" textAlignment="CENTER" textFill="WHITE" wrapText="false">
                            <font>
                               <Font size="18.0" fx:id="x5" />
                            </font>
-                           <textFill>
-                              <Color red="0.624" green="0.624" blue="0.624" fx:id="x6" />
-                           </textFill>
                         </Label>
                         <ListView fx:id="listContactos" layoutX="12.0" layoutY="120.0" onMouseClicked="#cambiarConversacion" prefHeight="596.0" prefWidth="620.0" styleClass="custom-listview" stylesheets="@Estilos.css" />
                         <ImageView fx:id="imagenAjustes" fitHeight="35.0" fitWidth="38.0" layoutX="19.0" layoutY="663.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label layoutX="16.0" layoutY="20.0" text="UniChat">
+                        <Label layoutX="16.0" layoutY="20.0" text="UniChat" textFill="WHITE">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Label>
-                        <MenuButton fx:id="tresPuntos" layoutX="37.0" layoutY="63.0" mnemonicParsing="false" onMouseClicked="#menu" stylesheets="@Estilos.css" text="⋮">
+                        <MenuButton fx:id="tresPuntos" layoutX="37.0" layoutY="63.0" mnemonicParsing="false" stylesheets="@Estilos.css" text="⋮" textFill="WHITE">
                           <items>
                             <MenuItem mnemonicParsing="false" onAction="#crearChat" text="Crear Chat" />
                               <MenuItem mnemonicParsing="false" onAction="#contactos" text="Contactos" />
@@ -93,8 +89,8 @@
                   <ImageView fx:id="imagenAdjuntar" fitHeight="23.0" fitWidth="25.0" layoutX="79.0" layoutY="706.0" onMouseClicked="#adjuntarImagenesOArchivos" pickOnBounds="true" preserveRatio="true" />
                   <Label layoutX="521.0" layoutY="708.0" onMouseClicked="#exportarCSV" text="Exportar CSV" textFill="#2600ff" />
                   <TextField fx:id="nombreDelCSV" layoutX="607.0" layoutY="704.0" prefHeight="26.0" prefWidth="102.0" promptText="Nombre CSV" />
-                  <Label fx:id="exportadoCSV" layoutX="607.0" layoutY="734.0" onMouseClicked="#quitar" textFill="#bf5252" />
-                  <MenuButton fx:id="tresPuntos1" layoutX="684.0" layoutY="687.0" mnemonicParsing="false" onMouseClicked="#menu" stylesheets="@Estilos.css" text="⋮">
+                  <Label fx:id="exportadoCSV" layoutX="607.0" layoutY="734.0" onMouseClicked="#quitarCSV" textFill="#bf5252" />
+                  <MenuButton fx:id="tresPuntos1" layoutX="684.0" layoutY="687.0" mnemonicParsing="false" stylesheets="@Estilos.css" text="⋮">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -102,6 +98,8 @@
                         <MenuItem mnemonicParsing="false" onAction="#informacion" text="Información" />
                      </items>
                   </MenuButton>
+                  <ImageView fx:id="exportarAZip" fitHeight="23.0" fitWidth="25.0" layoutX="36.0" layoutY="707.0" onMouseClicked="#descargarZIP" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="exportadoAZIP" layoutX="17.0" layoutY="739.0" onMouseClicked="#quitarZIP" textFill="#bf5252" />
                </children>
         </AnchorPane>
       </items>

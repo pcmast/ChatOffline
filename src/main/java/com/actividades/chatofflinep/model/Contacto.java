@@ -17,17 +17,14 @@ public class Contacto {
     @XmlElement
     private String numeroTelefono;
 
-    @XmlElement
-    private String estadoLinea;
 
     @XmlElement
     private Usuario usuario = new Usuario();
 
 
-    public Contacto(String apodo, String numeroTelefono, String estadoLinea) {
+    public Contacto(String apodo, String numeroTelefono) {
         this.apodo = apodo;
         this.numeroTelefono = numeroTelefono;
-        this.estadoLinea = estadoLinea;
     }
     public Contacto() {
     }
@@ -49,13 +46,6 @@ public class Contacto {
         this.numeroTelefono = numeroTelefono;
     }
 
-    public String getEstadoLinea() {
-        return estadoLinea;
-    }
-
-    public void setEstadoLinea(String estadoLinea) {
-        this.estadoLinea = estadoLinea;
-    }
 
     public Usuario getUsuario() {
         return usuario;

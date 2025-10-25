@@ -43,51 +43,59 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" prefHeight="567.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.actividades.chatofflinep.controller.PantallaInicioSesionController">
+<VBox alignment="TOP_CENTER" prefHeight="567.0" prefWidth="807.0" stylesheets="@Estilos.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.actividades.chatofflinep.controller.PantallaInicioSesionController">
   <children>
-      <ImageView fx:id="imagenLogo" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-         <VBox.margin>
-            <Insets top="20.0" />
-         </VBox.margin>
-      </ImageView>
-      <Label text="Iniciar Sesion">
-         <font>
-            <Font size="29.0" />
-         </font>
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
-      </Label>
-      <HBox alignment="CENTER" prefHeight="71.0" prefWidth="807.0">
+      <VBox alignment="TOP_CENTER" prefHeight="402.0" prefWidth="688.0" style="-fx-background-color: #e9ebee;" styleClass="formulario-box" stylesheets="@Estilos.css">
          <children>
-            <TextField fx:id="txCorreo" prefHeight="38.0" prefWidth="206.0" promptText="Correo:" styleClass="simple-textfield" stylesheets="@Estilos.css" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" prefHeight="62.0" prefWidth="807.0">
-         <children>
-            <PasswordField fx:id="txContrasenna" prefHeight="38.0" prefWidth="207.0" promptText="Contraseña:" stylesheets="@Estilos.css">
-               <styleClass>
-                  <String fx:value="custom-text-field" />
-                  <String fx:value="simple-textfield" />
-               </styleClass>
-            </PasswordField>
-         </children>
-      </HBox>
-      <VBox alignment="CENTER" prefHeight="102.0" prefWidth="807.0">
-         <children>
-            <Label text="No tienes cuenta">
-               <opaqueInsets>
+            <ImageView fx:id="imagenLogo" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </ImageView>
+            <Label text="Iniciar Sesion">
+               <font>
+                  <Font size="29.0" />
+               </font>
+               <VBox.margin>
                   <Insets />
-               </opaqueInsets>
+               </VBox.margin>
             </Label>
-            <Label onMouseClicked="#registrarse" text="Registrate" textFill="#1a00ff" />
-            <Button fx:id="btnInicioSesion" mnemonicParsing="false" onMouseClicked="#inicioSesion" stylesheets="@Estilos.css" text="Iniciar Sesion">
-               <styleClass>
-                  <String fx:value="button" />
-                  <String fx:value="button" />
-               </styleClass>
-            </Button>
+            <HBox alignment="CENTER" prefHeight="71.0" prefWidth="807.0">
+               <children>
+                  <TextField fx:id="txCorreo" prefHeight="38.0" prefWidth="206.0" promptText="Correo:" styleClass="simple-textfield" stylesheets="@Estilos.css" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="62.0" prefWidth="807.0">
+               <children>
+                  <PasswordField fx:id="txContrasenna" prefHeight="38.0" prefWidth="207.0" promptText="Contraseña:" stylesheets="@Estilos.css">
+                     <styleClass>
+                        <String fx:value="custom-text-field" />
+                        <String fx:value="simple-textfield" />
+                     </styleClass>
+                  </PasswordField>
+               </children>
+            </HBox>
+            <VBox alignment="CENTER" prefHeight="102.0" prefWidth="807.0">
+               <children>
+                  <Label text="No tienes cuenta">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+                  <Label onMouseClicked="#registrarse" text="Registrate" textFill="#1a00ff" />
+                  <Button fx:id="btnInicioSesion" mnemonicParsing="false" onMouseClicked="#inicioSesion" stylesheets="@Estilos.css" text="Iniciar Sesion">
+                     <styleClass>
+                        <String fx:value="button" />
+                        <String fx:value="button" />
+                     </styleClass>
+                  </Button>
+               </children>
+            </VBox>
+            <Label fx:id="txVacios" textFill="RED" />
          </children>
       </VBox>
   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
 </VBox>

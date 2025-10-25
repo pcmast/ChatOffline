@@ -27,7 +27,7 @@ public class PantallaRegistroController {
     public TextField nombre;
     public TextField numeroTelefono;
     public Label telefonoInvalido;
-    public Label usuarioYaExiste;
+    public Label InformacionDelRegistro;
 
 
     public void registrado(MouseEvent mouseEvent) {
@@ -35,42 +35,55 @@ public class PantallaRegistroController {
         String password = constrasenna.getText();
         String nombre = this.nombre.getText();
         boolean correcto = Utilidades.esNumeroDeTelefono(numeroTelefono.getText());
-        if (!correcto) {
-            telefonoInvalido.setText("Numero De Telefono Invalido Introduce otro");
-        } else {
-            Usuario usuario = new Usuario();
-            usuario.setEmail(email);
-            usuario.setContrasenna(password);
-            usuario.setNombre(nombre);
-            usuario.setNumeroTelefono(numeroTelefono.getText());
-            String ruta = "xml/usuarios.xml";
-            File file = new File(ruta);
-            TodosUsuarios usuarios = new TodosUsuarios();
-            List<Usuario> usuariosRegistrados = new ArrayList<>();
-
-            if (file.exists()) {
-                usuariosRegistrados = usuarios.getUsuarioList();
-                boolean encontrado = false;
-                for (Usuario usuario1 : usuariosRegistrados) {
-                    if (usuario1.getNumeroTelefono().equals(usuario.getNumeroTelefono()) || usuario1.getEmail().equals(usuario.getEmail())) {
-                        usuarioYaExiste.setText("Este usuario ya existe en el sistema Inicia sesión");
-                        encontrado = true;
-                    }
-                }
-                if (!encontrado) {
-                    usuariosRegistrados.add(usuario);
-                    usuarios.setUsuarioList(usuariosRegistrados);
-                    XMLManagerCollection.writeXML(usuarios, "xml/usuarios.xml");
-                    registroSesionExitoso(mouseEvent);
-                }
+        boolean correoCorrecto = Utilidades.esCorreoElectronicoValido(correo.getText());
+        telefonoInvalido.setText("");
+        if (!numeroTelefono.getText().isEmpty() && !correo.getText().isEmpty() && !nombre.isEmpty()) {
+            if (!correoCorrecto) {
+            InformacionDelRegistro.setText("Introduce un correo correcto");
+            }else {
+            if (!correcto) {
+                telefonoInvalido.setText("Numero De Telefono Invalido Introduce otro");
             } else {
-                XMLManagerCollection.writeXML(usuarios, "xml/usuarios.xml");
-                usuariosRegistrados = usuarios.getUsuarioList();
-                usuariosRegistrados.add(usuario);
+                telefonoInvalido.setText("");
+                InformacionDelRegistro.setText("");
+                Usuario usuario = new Usuario();
+                usuario.setEmail(email);
+                usuario.setContrasenna(password);
+                usuario.setNombre(nombre);
+                String numeroLimpio = Utilidades.limpiarNumeroTelefono(numeroTelefono.getText());
+                usuario.setNumeroTelefono(numeroLimpio);
+                String ruta = "xml/usuarios.xml";
+                File file = new File(ruta);
+                TodosUsuarios usuarios = new TodosUsuarios();
+                List<Usuario> usuariosRegistrados = new ArrayList<>();
+
+                if (file.exists()) {
+                    usuariosRegistrados = usuarios.getUsuarioList();
+                    boolean encontrado = false;
+                    for (Usuario usuario1 : usuariosRegistrados) {
+                        if (usuario1.getNumeroTelefono().equals(usuario.getNumeroTelefono()) || usuario1.getEmail().equals(usuario.getEmail())) {
+                            InformacionDelRegistro.setText("Este usuario ya existe en el sistema Inicia sesión");
+                            encontrado = true;
+                        }
+                    }
+                    if (!encontrado) {
+                        usuariosRegistrados.add(usuario);
+                        usuarios.setUsuarioList(usuariosRegistrados);
+                        XMLManagerCollection.writeXML(usuarios, "xml/usuarios.xml");
+                        registroSesionExitoso(mouseEvent);
+                    }
+                } else {
+                    XMLManagerCollection.writeXML(usuarios, "xml/usuarios.xml");
+                    usuariosRegistrados = usuarios.getUsuarioList();
+                    usuariosRegistrados.add(usuario);
+
+                }
+
 
             }
-
-
+        }
+    }else {
+            telefonoInvalido.setText("Error Debes Introducir todos los campos");
         }
 
 

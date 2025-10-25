@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -24,6 +25,7 @@ public class PantallaInicioSesionController {
     public PasswordField txContrasenna;
     public TextField txCorreo;
     public Button btnInicioSesion;
+    public Label txVacios;
 
     public void initialize() {
         File imagenRuta = new File("imagenes/mensajeria.png");
@@ -41,7 +43,10 @@ public class PantallaInicioSesionController {
 
     public void inicioSesion(MouseEvent mouseEvent) {
         boolean inicioSesionExitoso = false;
+
+        if (!txCorreo.getText().isEmpty() && !txContrasenna.getText().isEmpty()){
         try {
+            txVacios.setText("");
             TodosUsuarios todosUsuarios = TodosUsuarios.getInstance();
 
             List<Usuario> list = todosUsuarios.getUsuarioList();
@@ -67,11 +72,16 @@ public class PantallaInicioSesionController {
                 currentStage.setScene(scene);
                 currentStage.centerOnScreen();
                 currentStage.show();
+            }else {
+                txVacios.setText("Tus correo o contraseña no son correctos");
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }else {
+           txVacios.setText("Debes Introducir Todos los datos");
 
+        }
 
     }
 
