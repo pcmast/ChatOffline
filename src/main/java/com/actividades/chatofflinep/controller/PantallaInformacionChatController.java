@@ -31,19 +31,20 @@ public class PantallaInformacionChatController {
 
     private Chat chat;
 
+    //Metodo que al iniciar la ventana pone un mensaje a un label
     public void initialize() {
         numeroMensajesUsuario1.setText("Mensajes de ");
 
     }
 
-
+    //Metodo que asigna un chat
     public void setChat(Chat chat) {
         this.chat = chat;
         if (chat != null) {
             analizarChat();
         }
     }
-
+    //Metodo que analiza el chat seleccionado con Stream
     private void analizarChat() {
         List<Mensaje> mensajes = chat.getMensajes();
 
@@ -104,6 +105,7 @@ public class PantallaInformacionChatController {
         ultimoMensaje.setText(ultimoDeLosMensajes);
     }
 
+    //Metodo que comprueba el numero de mensajes de cada usuario
     public static Map<String, Long> mensajesPorUsuario(List<Mensaje> mensajes) {
         return mensajes.stream().collect(Collectors.groupingBy(Mensaje::getEmisor, Collectors.counting()));
     }

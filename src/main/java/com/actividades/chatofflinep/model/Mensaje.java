@@ -89,6 +89,7 @@ public class Mensaje {
         this.horaEnvio = horaEnvio;
     }
 
+    //Metodo toString modificado para mostrar un mensaje con el nombre del emisor y la fecha del mensaje
     @Override
     public String toString() {
         // Obtener usuario actual

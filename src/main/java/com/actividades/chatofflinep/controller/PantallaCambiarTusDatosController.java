@@ -23,13 +23,14 @@ public class PantallaCambiarTusDatosController {
     @FXML
     private TextField contrasenna;
 
-
+    //Metodo que al iniciar la pantalla desabilita un textField para que el usuario lo desbloquee con la contraseña
     public void initialize() {
         contrasenna.setDisable(true);
         contrasenna.setText("****");
     }
 
-
+    //Metodo que comprueba si la contraseña introducida no esta vacia y si es correcta si lo es cambia la contraseña
+    //del usuario
     public void actualizarDatos(MouseEvent mouseEvent) {
         if (!esContrasenna.getText().isEmpty()) {
             if (esContrasenna.getText().equals(UsuarioActualController.getInstance().getUsuario().getContrasenna())) {
@@ -65,6 +66,7 @@ public class PantallaCambiarTusDatosController {
 
     }
 
+    //Metodo que al introducir la contraseña si es correcta habilita el textField para cambiar la contraseña
     public void liberarContrasenna(MouseEvent mouseEvent) {
         if (esContrasenna.getText().equals(UsuarioActualController.getInstance().getUsuario().getContrasenna())) {
             contrasenna.setDisable(false);

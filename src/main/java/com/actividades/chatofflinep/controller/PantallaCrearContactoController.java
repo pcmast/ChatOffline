@@ -41,7 +41,8 @@ public class PantallaCrearContactoController {
     private Contacto contacto = new Contacto();
 
 
-
+    //Metodo que al iniciar la ventana desabilita y habilita los campos dependiendo de al boton que haya dado el usuario
+    //O a crear o editar o eliminar
     public void initialize() {
         File foto1 = new File("imagenes/persona.png");
         File foto2 = new File("imagenes/telefono.png");
@@ -66,6 +67,8 @@ public class PantallaCrearContactoController {
         this.contacto = contacto;
     }
 
+    //Metodo que crea un nuevo contacto al usuario comprueba si el contacto creado no lo tiene ya agregado el usuario
+    //Si lo tiene no hara nada solo notificara
     public void crearContacto(MouseEvent mouseEvent) {
         boolean existe = false;
         Contacto contacto = new Contacto();
@@ -115,19 +118,19 @@ public class PantallaCrearContactoController {
 
     }
 
-
+    //Metodo que asigna los valores del contacto si se va a editar
     public void asignarValores() {
         telefono.setText(contacto.getNumeroTelefono());
         apodo.setText(contacto.getApodo());
 
     }
-
+    //Habilita el modo edicion del contacto
     public void habilitarEdicion() {
         this.editarContacto.setDisable(false);
         this.eliminarContacto.setDisable(false);
         this.crearContacto.setDisable(true);
     }
-
+    //Metodo que coge los datos nuevos del contacto y los cambia
     public void editar(MouseEvent mouseEvent) {
         contacto.setNumeroTelefono(telefono.getText());
         contacto.setApodo(apodo.getText());
@@ -139,6 +142,8 @@ public class PantallaCrearContactoController {
             pantallaAnterior(mouseEvent);
         }
     }
+
+    //Muestra una alerta de confirmacion para eliminar un contacto
     private boolean mostrarAlertaConfirmacion(String titulo, String mensaje) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle(titulo);
@@ -152,6 +157,7 @@ public class PantallaCrearContactoController {
         return alert.showAndWait().filter(respuesta -> respuesta == botonSi).isPresent();
     }
 
+    //Metodo que elimina un contacto abre una alerta para confirmar
     public void eliminarContacto(MouseEvent mouseEvent) {
         if (mostrarAlertaConfirmacion("Confirmar eliminación", "¿Deseas eliminar este contacto?")) {
             UsuarioActualController.getInstance().getUsuario().eliminarContacto(contacto);
@@ -161,6 +167,7 @@ public class PantallaCrearContactoController {
 
     }
 
+    //Metodo que lleva a la ventana anterior
     public void pantallaAnterior(MouseEvent mouseEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(ChatOfflineAplication.class.getResource("pantallaContactos.fxml"));

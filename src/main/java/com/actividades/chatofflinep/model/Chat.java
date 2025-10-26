@@ -31,7 +31,7 @@ public class Chat {
         Usuario2 = usuario2;
         this.mensajes = mensajes;
     }
-
+    //Metodo que agrega un mensaje al chat
     public void agregarMensaje(Usuario emisor, String texto, LocalTime horaEnvio) {
         Mensaje mensaje = new Mensaje(emisor.getNumeroTelefono(), texto, horaEnvio);
         mensajes.add(mensaje);
@@ -61,7 +61,7 @@ public class Chat {
         Usuario2 = usuario2;
     }
 
-
+    //Metodo ToString modificado para mostrar lo que deseo del chat
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

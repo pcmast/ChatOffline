@@ -32,6 +32,7 @@ public class PantallaInicioSesionController {
     @FXML
     private Label txVacios;
 
+    //Metodo que al iniciar la ventana pone una imagen y si no existe crea el directorio xml
     public void initialize() {
         File imagenRuta = new File("imagenes/mensajeria.png");
         Image image = new Image(imagenRuta.toURI().toString());
@@ -45,7 +46,8 @@ public class PantallaInicioSesionController {
 
     }
 
-
+    //Metodo que comprueba los datos de inicio de sesion y si existen crea la nueva ventana de inicial
+    //Tiene comprobaciones de correo y si los datos no corresponden
     public void inicioSesion(MouseEvent mouseEvent) {
         boolean inicioSesionExitoso = false;
 
@@ -89,7 +91,7 @@ public class PantallaInicioSesionController {
         }
 
     }
-
+    //Metodo para abrir una ventana de registrarse
     public void registrarse(MouseEvent mouseEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(ChatOfflineAplication.class.getResource("pantallaRegistro.fxml"));

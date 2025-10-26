@@ -26,7 +26,7 @@ public class PantallaCrearChatController {
     @FXML
     private ListView<Contacto> listaContactos;
 
-
+    //Metodo que al iniciar carga una lissta de contactos y si no existe crea una carpeta con el nombre chats
     public void initialize() {
         listaContactos.setItems(cargarLista());
         listaContactos.getSelectionModel().select(0);
@@ -38,7 +38,7 @@ public class PantallaCrearChatController {
 
 
     }
-
+    //Metodo que carga la lista de contactos de un usuario
     public ObservableList<Contacto> cargarLista() {
         ObservableList<Contacto> observableList = FXCollections.observableArrayList();
         List<Contacto> list = UsuarioActualController.getInstance().getUsuario().getContactos();
@@ -46,7 +46,8 @@ public class PantallaCrearChatController {
         return observableList;
     }
 
-
+    //Metodo que busca en la lista con el numero de telefono el contacto del usuario con dicho numero de telefono
+    //Usa un stream
     public void buscar(KeyEvent keyEvent) {
         String textoBusqueda = buscarContacto.getText().trim();
 
@@ -58,7 +59,8 @@ public class PantallaCrearChatController {
 
     }
 
-
+    //Metodo que crea un chat con el contacto seleccionado por el usuario y comprueba si el usuario a seleccionado uno
+    //y no lo deja vacio
     public void crearChat(MouseEvent mouseEvent) {
         Chat chat = new Chat();
         Usuario usuarioOriginal = UsuarioActualController.getInstance().getUsuario();

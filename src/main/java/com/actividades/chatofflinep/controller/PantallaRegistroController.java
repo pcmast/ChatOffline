@@ -35,7 +35,7 @@ public class PantallaRegistroController {
     @FXML
     private Label InformacionDelRegistro;
 
-
+    //Metodo que registra un usuario en el sistema y comprueba si ese usuario ya existe en el mismo
     public void registrado(MouseEvent mouseEvent) {
         String email = correo.getText();
         String password = constrasenna.getText();
@@ -95,7 +95,7 @@ public class PantallaRegistroController {
 
     }
 
-
+    //Metodo que abre la ventana de inicio de sesion
     public void iniciarSesion(MouseEvent mouseEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(ChatOfflineAplication.class.getResource("pantallaInicioSesion.fxml"));
@@ -112,7 +112,7 @@ public class PantallaRegistroController {
 
 
     }
-
+    //Si el registro de sesion a sido exitoso abre la ventana de inicio de sesion
     public void registroSesionExitoso(MouseEvent mouseEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(ChatOfflineAplication.class.getResource("pantallaInicioSesion.fxml"));

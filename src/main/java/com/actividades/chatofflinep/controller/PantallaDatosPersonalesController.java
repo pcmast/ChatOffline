@@ -25,6 +25,7 @@ public class PantallaDatosPersonalesController {
     @FXML
     private Label telefono;
 
+    //Metodo que al iniciar la ventana pone datos en los campos
     public void initialize(){
         Usuario usuario =UsuarioActualController.getInstance().getUsuario();
         nombre.setText(usuario.getNombre());
@@ -33,7 +34,7 @@ public class PantallaDatosPersonalesController {
         telefono.setText(usuario.getNumeroTelefono());
     }
 
-
+    //Metodo que abre una ventana para cambiar tus datos (Contraseña)
     public void editarDatos(MouseEvent mouseEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(ChatOfflineAplication.class.getResource("pantallaCambiarTusDatos.fxml"));

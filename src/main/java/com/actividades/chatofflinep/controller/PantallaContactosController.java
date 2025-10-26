@@ -25,7 +25,7 @@ public class PantallaContactosController {
     @FXML
     private ListView<Contacto> listaContactos;
 
-
+    //Metodo que al iniciar la ventana carga en la lista unos contactos y si no existe crea el directorio contactosUsuario
     public void initialize() {
         listaContactos.setItems(cargarLista());
         listaContactos.getSelectionModel().select(0);
@@ -36,7 +36,7 @@ public class PantallaContactosController {
             carpeta.mkdirs();
         }
     }
-
+    //Metodo que carga en la lista los contactos que tiene el usuario actual del sistema en un ObservableList
     public ObservableList<Contacto> cargarLista() {
         ObservableList<Contacto> observableList = FXCollections.observableArrayList();
         List<Contacto> list = UsuarioActualController.getInstance().getUsuario().getContactos();
@@ -44,6 +44,7 @@ public class PantallaContactosController {
         return observableList;
     }
 
+    //Metodo que abre una ventana nueva para crear un contacto nuevo
     public void crearContacto(MouseEvent mouseEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(ChatOfflineAplication.class.getResource("pantallaCrearContacto.fxml"));
@@ -59,7 +60,7 @@ public class PantallaContactosController {
 
 
     }
-
+    //Metodo que crea una ventana nueva y edita el contacto con nuevos datos
     public void editarContacto(MouseEvent mouseEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(ChatOfflineAplication.class.getResource("pantallaCrearContacto.fxml"));

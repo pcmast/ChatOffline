@@ -66,6 +66,12 @@ public class PantallaInicialController {
 
     private List<Chat> list = new ArrayList<>();
 
+    /*
+    * Metodo que al iniciar el programa inicia metodos necesarios para el programa como imagenes las listas etc
+    * tambien se modifica el listView con setCellFactory para que se puedan mostrar imagenes y archivos de la forma
+    * que se requiera
+    *
+    * */
     public void initialize() {
         File file = new File("imagenes/clip.jpg");
         Image image = new Image(file.toURI().toString());
@@ -92,7 +98,7 @@ public class PantallaInicialController {
         exportarAZip.setImage(image1);
 
 
-
+        //Modificamos el formato de listView para que acepte imagenes y archivos
         listViewChats.setCellFactory(param -> new ListCell<Mensaje>() {
             private final ImageView imageView = new ImageView();
             private final Label labelMensaje = new Label();
@@ -233,6 +239,7 @@ public class PantallaInicialController {
 
     }
 
+    //Metodo que al ser llamado actualiza la lista con los chats existentes
     public void iniciarLista() {
         Usuario usuarioActual = UsuarioActualController.getInstance().getUsuario();
         list.clear();
@@ -265,7 +272,8 @@ public class PantallaInicialController {
 
     }
 
-
+    //Metodo que envia un mensaje al chat seleccionado por el usuario si no a seleccionado ninguno no hara nada
+    //Comprueba si el a que chat debe de enviarse el mensaje si no existe ese chat no envia el mensaje
     public void enviarMensaje(MouseEvent mouseEvent) {
         if (mensaje.getText().length() > 1) {
             String mensajeUsuario = mensaje.getText();
@@ -309,6 +317,12 @@ public class PantallaInicialController {
     }
 
 
+    /*
+    * Metodo que actualiza la listas de contactos desde los contactos del usuario si los encuentra
+    * si no encuentra el contacto porque el usuario no lo tenga en sus contactos crea uno temporalmente
+    * que le asigna solo el numero de telefono
+    *
+    * */
     public void actualizarListas(Usuario usuarioActual) {
         Set<Contacto> contactosConChats = new HashSet<>();
         for (Chat chat : usuarioActual.getList()) {
@@ -341,12 +355,13 @@ public class PantallaInicialController {
 
     }
 
+    //Metodo que llama a otro que inicia una lista
     public void cargarLista(MouseEvent mouseEvent) {
         iniciarLista();
 
     }
 
-
+    //Metodo que crea una nueva ventana que crea los chats con los usuarios
     public void crearChat(ActionEvent actionEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(ChatOfflineAplication.class.getResource("pantallaCrearChat.fxml"));
@@ -369,6 +384,7 @@ public class PantallaInicialController {
 
     }
 
+    //Metodo que al ser llamado setea el usuario actual a null y vuelve a la pantalla de inicio de sesion
     public void cerrarSesion(ActionEvent actionEvent) {
         UsuarioActualController usuarioActualController = UsuarioActualController.getInstance();
         usuarioActualController.setUsuario(null);
@@ -392,7 +408,7 @@ public class PantallaInicialController {
 
     }
 
-
+    //Metodo que habre una nueva ventana con los contactos que tiene el usuario
     public void contactos(ActionEvent actionEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(ChatOfflineAplication.class.getResource("pantallaContactos.fxml"));
@@ -416,6 +432,7 @@ public class PantallaInicialController {
 
     }
 
+    //Metodo que muestra los chats que tiene un contacto es decir los mensajes de ese usuario
     private void mostrarChatsDelContacto(Contacto contacto) {
         Usuario usuarioActual = UsuarioActualController.getInstance().getUsuario();
 
@@ -427,6 +444,7 @@ public class PantallaInicialController {
                     listViewChats.setItems(observableMensajes);
                     if (!observableMensajes.isEmpty()) {
 //                        listViewChats.getSelectionModel().selectLast();
+                        //Lamba que desplaza la lista hasta el ultimo elemento de la lista
                         Platform.runLater(() -> listViewChats.scrollTo(observableMensajes.size() - 1));
                     }
                     break;
@@ -435,6 +453,8 @@ public class PantallaInicialController {
         }
     }
 
+
+    //Metodo que cambia en el listView dependiendo del contacto seleccionado un chat o otro
     public void cambiarConversacion(MouseEvent mouseEvent) {
         Contacto contactoSeleccionado = listContactos.getSelectionModel().getSelectedItem();
         if (contactoSeleccionado == null) {
@@ -444,14 +464,12 @@ public class PantallaInicialController {
 
     }
 
+    //Metodo que adjunta imagenes o archivos a un listview controla que se suban los archivos que sean como png,jpg
+    //Combrueba si en la lista de contactos se a seleccionado un chat para no permitir errores como no tener ningun chat seleccionado
     public void adjuntarImagenesOArchivos(MouseEvent mouseEvent) {
 
         if(listContactos.getSelectionModel().getSelectedItem() != null) {
-            try {
-                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Seleccionar archivo o imagen");
             fileChooser.getExtensionFilters().addAll(
@@ -520,6 +538,8 @@ public class PantallaInicialController {
 
     }
 
+    //Metodo que abre la ventana de ajustes donde puedes ver los datos personales del usuario actual como si desea
+    //Cambiar la contraseña
     public void Ajustes(MouseEvent mouseEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(ChatOfflineAplication.class.getResource("pantallaDatosPersonales.fxml"));
@@ -542,6 +562,8 @@ public class PantallaInicialController {
 
     }
 
+    //Metodo que coge el chat seleccionado y lo exporta donde el usuario quiera en formato CSV
+    //Tiene coreccion de errores por si el usuario no a seleccionado ningun chat
     public void exportarCSV(MouseEvent mouseEvent) {
         String carpetaRuta = "xml/exportarCSV";
         File carpeta = new File(carpetaRuta);
@@ -587,12 +609,14 @@ public class PantallaInicialController {
         }
     }
 
-
+    //Metodo que elimina el mensaje de Exportado Con exito del CSV
     public void quitarCSV(MouseEvent mouseEvent) {
         exportadoCSV.setText("");
 
     }
 
+    //Metodo que abre una venta nueva con la informacion del chat seleccionado
+    //Si no se a seleccionado ninguno no hara nada
     public void informacion(ActionEvent actionEvent) {
         if (listContactos.getSelectionModel().getSelectedItem() != null){
         try {
@@ -630,6 +654,8 @@ public class PantallaInicialController {
 
     }
 
+    //Metodo que exporta la conversacion en txt y lo envuelve en ZIP conteniendo dentro tambien los archivos tipo PDF, imagen
+    //que se envien al chat
     public void descargarZIP(MouseEvent mouseEvent) {
         try {
             Contacto contactoSeleccionado = listContactos.getSelectionModel().getSelectedItem();
@@ -691,6 +717,7 @@ public class PantallaInicialController {
             throw new RuntimeException(e);
         }
     }
+    //Quita el mensaje de Exportado a ZIP correctamente al pulsar sobre el
     public void quitarZIP(MouseEvent mouseEvent) {
         exportadoAZIP.setText("");
 

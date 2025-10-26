@@ -82,10 +82,9 @@ public class Usuario implements Serializable {
     public boolean annadirContacto(String telefono){
         boolean annadido = Utilidades.esNumeroDeTelefono(telefono);
 
-
         return annadido;
     }
-
+    //Metodo que que coge los contactos del usuario
     public List<Contacto> getContactos() {
         File file = new File("xml/contactosUsuario/"+getNumeroTelefono()+".xml");
         List<Contacto> list = new ArrayList<>();
@@ -97,6 +96,7 @@ public class Usuario implements Serializable {
         return contactos;
     }
 
+    //Metodo que edita un contacto con los datos nuevos
     public void editarContacto(Contacto contactoEditado){
         String ruta = "xml/contactosUsuario/"+getNumeroTelefono()+".xml";
         File file = new File(ruta);
@@ -113,7 +113,7 @@ public class Usuario implements Serializable {
         contactosUsuario.setContactos(list);
         XMLManagerCollection.writeXML(contactosUsuario, ruta);
     }
-
+    //Metodo que elimina un contacto existente en la lista de contactos
     public void eliminarContacto(Contacto contacto){
         String ruta = "xml/contactosUsuario/"+getNumeroTelefono()+".xml";
         File file = new File(ruta);
