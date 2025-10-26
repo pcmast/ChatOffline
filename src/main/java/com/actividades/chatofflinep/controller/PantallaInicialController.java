@@ -76,10 +76,22 @@ public class PantallaInicialController {
                     .forEach(div -> div.setMouseTransparent(true));
         });
 
+        mensaje.setOnKeyPressed(event -> {
+            switch (event.getCode()) {
+                case ENTER:
+                    enviarMensaje(null);
+                    break;
+                default:
+                    break;
+            }
+        });
+
         iniciarLista();
         File file1 = new File("imagenes/zip.png");
         Image image1 = new Image(file1.toURI().toString());
         exportarAZip.setImage(image1);
+
+
 
         listViewChats.setCellFactory(param -> new ListCell<Mensaje>() {
             private final ImageView imageView = new ImageView();
